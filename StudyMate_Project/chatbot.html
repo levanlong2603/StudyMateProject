@@ -1,0 +1,55 @@
+<!-- Chatbot Widget -->
+<div id="chatbotWidget" class="chatbot-widget">
+    <div class="chatbot-header">
+        <div class="chatbot-avatar">
+            <img src="assets/img/robot-ai.png" alt="Robot AI">
+            <div class="chatbot-status"></div>
+        </div>
+        <div class="chatbot-title">
+            <h3>StudyMate AI</h3>
+            <p>Đang trực tuyến</p>
+        </div>
+        <div class="chatbot-controls">
+            <button id="minimizeChatbot" class="chatbot-btn">−</button>
+            <button id="closeChatbot" class="chatbot-btn">×</button>
+        </div>
+    </div>
+    
+    <div id="chatbotMessages" class="chatbot-messages">
+        <!-- Tin nhắn mặc định -->
+        <div class="message bot-message welcome-message">
+            <div class="bot-avatar">
+                <img src="assets/img/robot-ai-small.png" alt="Robot AI">
+            </div>
+            <div class="message-content">
+                <p>Xin chào! Tôi là StudyMate AI 🤖</p>
+                <p>Tôi có thể giúp gì cho bạn hôm nay?</p>
+                <div class="quick-replies">
+                    <button class="quick-reply" data-query="Tài liệu CNTT">Tài liệu CNTT</button>
+                    <button class="quick-reply" data-query="Lịch thi">Lịch thi</button>
+                    <button class="quick-reply" data-query="Hướng dẫn QLDT">Hướng dẫn QLDT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="chatbot-input">
+        <input type="text" id="chatbotInput" placeholder="Nhập câu hỏi của bạn...">
+        <button id="sendMessage" class="chatbot-send-btn">
+            <span class="material-symbols-outlined">send</span>
+        </button>
+        <button id="voiceInput" class="chatbot-voice-btn">
+            <span class="material-symbols-outlined">mic</span>
+        </button>
+    </div>
+</div>
+
+<!-- Chatbot Toggle Button -->
+<button id="toggleChatbot" class="chatbot-toggle-btn">
+    <img src="assets/img/robot-ai-icon.png" alt="Robot AI" class="chatbot-icon">
+    <span class="notification-dot"></span>
+</button>
+
+<!-- Liên kết CSS và JavaScript -->
+<link rel="stylesheet" href="assets/css/chatbot.css">
+<script src="assets/js/chatbot.js" defer></script>

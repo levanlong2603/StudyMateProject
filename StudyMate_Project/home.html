@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:title" content="PTIT Library" />
+        <meta
+            property="og:description"
+            content="Ptiters are united by a share purpose"
+        />
+        <meta
+            property="og:image"
+            content="https://stellarhold170nt.github.io/PTITLibrary/assets/img/icon.svg"
+        />
+        <meta property="og:type" content="website" />
+        <link
+            rel="icon"
+            href="https://stellarhold170nt.github.io/PTITLibrary/assets/img/icon.svg"
+        />
+
+        <title>StudyMate</title>
+
+        <link rel="stylesheet" href="./assets/css/reset.css" />
+        <link rel="stylesheet" href="./assets/css/style.css" />
+        <script src="./assets/js/jquery3.6.0.js"></script>
+        <script src="./assets/js/cookie_controller.js"></script>
+
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+
+        <style>
+            .input_text {
+                width: 60em;
+                height: 48px;
+                border-radius: 2px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding-left: 3.2em;
+                font-size: 16px;
+                outline: none;
+                border: none;
+            }
+
+            .suggestion {
+                display: none;
+                position: absolute;
+                top: calc(48px + 12px);
+                left: 0;
+                background-color: white;
+                font-size: 16px;
+                width: 100%;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+                    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+
+                border-radius: 2px;
+            }
+
+            .suggestion ul {
+                display: flex;
+
+                padding: 24px 3.2em;
+
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .suggestion ul li a {
+                font-size: 16px;
+            }
+
+            .highlight-keyword {
+                font-weight: 700;
+                margin-left: 0 !important;
+                opacity: 1 !important;
+            }
+
+            @media screen and (max-width: 940px) {
+                nav ul {
+                    display: none;
+                }
+
+                .header .section1 {
+                    width: 100%;
+                }
+
+                .header .section2 .search {
+                    margin-top: 20px;
+                }
+
+                .header .section1 .title {
+                    margin-bottom: 8px;
+                }
+
+                .header .section1 .title {
+                    border-left: 2px var(--primary-color) solid;
+                    border-right: none !important;
+                }
+
+                .header .section1 ul {
+                    margin-left: 1em;
+                }
+
+                .header .section1 ul li {
+                    display: inline-block;
+                    font-size: 1.4rem;
+                    margin-left: 4px;
+                    margin-bottom: 8px;
+                    padding: 4px 8px;
+                    background: #eeeeee;
+                    border-radius: 4px;
+                    border-bottom: 1px #ccc solid;
+                }
+
+                .header .section1 ul li:hover {
+                    background: #ed1c24;
+                }
+
+                .header .section1 ul li:hover a {
+                    color: white;
+                }
+
+                .header .section2 {
+                    border: none;
+                    width: 100%;
+                }
+
+                .header .search-box {
+                    width: calc(100% - 24px);
+                }
+
+                .footer .map .search-box {
+                    width: 100%;
+                    margin-right: 0;
+                }
+
+                .statictic {
+                    gap: 4em;
+                }
+
+                .view-document {
+                    justify-content: center;
+                }
+
+                .view-available-document,
+                .view-document {
+                    width: calc(100% - 96px);
+                }
+
+                .view-document .view-imgbook {
+                    display: none;
+                }
+
+                .view-available-document .list li {
+                    margin-right: 0 !important;
+                }
+
+                .view-available-document .list {
+                    justify-content: space-between;
+                    gap: 8px;
+                }
+
+                .view-available-document .list span {
+                    display: none;
+                }
+
+                .view-title {
+                    font-size: 1.8rem;
+                }
+
+                .input_text {
+                    padding-left: 24px;
+                }
+            }
+
+            @media screen and (max-width: 1300px) {
+                .card-heading {
+                    display: none !important;
+                }
+                .card-info {
+                    display: none;
+                }
+            }
+
+            @media screen and (max-width: 1000px) {
+                nav ul {
+                    gap: 1.5em;
+                }
+            }
+
+            @media screen and (max-width: 768px) {
+                .header .section2 .search {
+                    width: 100%;
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+
+                .slide-btn {
+                    display: none;
+                }
+
+                .statictic {
+                    gap: 2em;
+                }
+
+                .statictic .number {
+                    font-size: 3rem !important;
+                }
+
+                .view-doc .content {
+                    width: 80% !important;
+                }
+            }
+
+            @media screen and (max-width: 480px) {
+                .view-available-document,
+                .view-document {
+                    width: calc(100% - 64px);
+                }
+
+                .statictic span.number {
+                    font-size: 2rem;
+                }
+
+                .cta .quote {
+                    font-size: 2.4rem;
+                }
+            }
+            /* Chatbot Styles */
+            .chatbot-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(53, 6, 6, 0.2);
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            overflow: hidden;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            }
+
+            .chatbot-widget.active {
+            transform: translateY(0);
+            opacity: 1;
+            }
+
+            .chatbot-header {
+            background-color: #e51e4c;
+            color: white;
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            }
+
+            .chatbot-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 0 5px;
+            }
+
+            .chatbot-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #f5f5f5;
+            }
+
+            .message {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 18px;
+            max-width: 80%;
+            word-wrap: break-word;
+            }
+
+            .user-message {
+            background-color: #e3f2fd;
+            color: #a10d48;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+            }
+
+            .bot-message {
+            background-color: white;
+            color: #680606;
+            margin-right: auto;
+            border-bottom-left-radius: 5px;
+            border: 1px solid #e0e0e0;
+            }
+
+            .chatbot-input {
+            display: flex;
+            padding: 10px;
+            background-color: white;
+            border-top: 1px solid #e0e0e0;
+            }
+
+            .chatbot-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            outline: none;
+            }
+
+            .chatbot-send-btn {
+            background-color: #e51e3c;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            }
+
+            .chatbot-toggle-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #d60e39;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            }
+
+            .chatbot-toggle-btn span {
+            font-size: 28px;
+            }
+
+            /* Animation for new messages */
+            @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+            }
+
+            .message {
+            animation: fadeIn 0.3s ease;
+            }
+
+            /* Responsive */
+            @media (max-width: 480px) {
+            .chatbot-widget {
+                width: 100%;
+                height: 70vh;
+                bottom: 0;
+                right: 0;
+                border-radius: 10px 10px 0 0;
+            }
+            
+            .chatbot-toggle-btn {
+                bottom: 15px;
+                right: 15px;
+                width: 50px;
+                height: 50px;
+            }
+            }
+        </style>
+    </head>
+    <body>
+        <script src="./assets/js/pageinit.js"></script>
+        <div class="header">
+            <div class="main-content">
+                <div class="body">
+                    <div class="section1">
+                        <div
+                            class="title"
+                            style="
+                                height: 40px;
+                                background-color: #f5f5f5;
+                                display: flex;
+                                align-items: center;
+                                border-right: 2px var(--primary-color) solid;
+                            "
+                        >
+                            <span
+                                style="
+                                    margin-left: 16px;
+                                    font-weight: 700;
+                                    font-size: 16px;
+                                "
+                                >StudyMate</span
+                            >
+                        </div>
+
+                        <ul>
+                            <li>
+                                <a href="major1.html">Điện Tử Viễn Thông</a>
+                            </li>
+                            <li>
+                                <a href="major1.html">Công Nghệ Thông Tin</a>
+                            </li>
+                            <li><a href="#!">Khoa Học Máy Tính</a></li>
+                            <li><a href="#!">Công Nghệ Đa Phương Tiện</a></li>
+                            <li>
+                                <a href="#!">Công Nghệ Tài Chính - Fintech</a>
+                            </li>
+                            <li><a href="#!">Marketing</a></li>
+                        </ul>
+                    </div>
+                    <div class="section2">
+                        <div class="search">
+                            <div class="search-box" style="position: relative">
+                                <!-- <span>Tìm kiếm tài liệu chuyên ngành</span> -->
+                                <input
+                                    type="text"
+                                    name="search_box"
+                                    placeholder="Tìm kiếm tài liệu chuyên ngành"
+                                    class="input_text"
+                                    required
+                                />
+                                <span
+                                    class="material-symbols-outlined"
+                                    style="font-size: 26px"
+                                >
+                                    search
+                                </span>
+                                <div class="suggestion">
+                                    <ul>
+                                        <!-- <li>
+                                            <a
+                                                target="_blank"
+                                                href="https://drive.google.com/drive/folders/1Z6mAuOr57O7PQirz43q0vcaP-j6Jec47?usp=drive_link"
+                                                >Triết học Mác-Lênin</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a
+                                                target="_blank"
+                                                href="https://drive.google.com/drive/folders/1r0KUQF4dg8QeWvXkBZObEXKiviHH9Olg?usp=drive_link"
+                                                >Pháp luật đại cương</a
+                                            >
+                                        </li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="intro">
+                            <h1>StudyMate</h1>
+                            <span class="address">
+                                Địa chỉ: Km10, Đường Nguyễn Trãi, Q.Hà Đông, Hà
+                                Nội, Việt Nam
+                            </span>
+                            <a
+                                href="https://qldt.ptit.edu.vn/#/home"
+                                style="
+                                    padding: 14px 24px;
+                                    background: var(--primary-color);
+                                    color: white;
+                                    font-size: 24px;
+                                "
+                                class="button"
+                            >
+                                Contact
+                            </a>
+
+                            <div class="notification">
+                                <span
+                                    class="material-symbols-outlined"
+                                    style="
+                                        margin-left: 32px;
+                                        color: var(--primary-color);
+                                    "
+                                >
+                                    Info
+                                </span>
+                                <div class="notification-info">
+                                    <span class="notification-heading"
+                                        >🌟 StudyMate – Hỗ trợ học tập mọi lúc, mọi nơi! 🌟</span
+                                    >
+                                    <span class="notification-text"
+                                        >Sau bao ngày mong đợi, cuối cùng StudyMate đã sẵn 
+                                        sàng đồng hành cùng bạn trên hành trình chinh phục tri thức! 📚
+                                        ✨ Hãy nhanh chóng khám phá các tính năng hữu ích, sắp xếp thời 
+                                        gian học tập hiệu quả và ôn bài thật chăm chỉ nhé!
+
+                                        💡 Chúc bạn có một mùa thi thành công và đầy ý nghĩa! 🚀</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--intro
+                        -->
+
+                        <div class="introduce">
+                            <div class="carousel">
+                                <button id="prev-btn" class="slide-btn">
+                                    <span class="material-symbols-outlined">
+                                        chevron_left
+                                    </span>
+                                </button>
+                                <button id="next-btn" class="slide-btn">
+                                    <span class="material-symbols-outlined">
+                                        chevron_right
+                                    </span>
+                                </button>
+
+                                <ul class="intro-list">
+                                    <li>
+                                        <div class="card">
+                                            <img
+                                                src="assets/img/ptit-3.jpg"
+                                                alt=""
+                                            />
+                                            <span class="card-heading"
+                                                >Học Viện Công nghệ Bưu chính
+                                                Viễn thông (PTIT)</span
+                                            >
+                                            <span class="card-info"
+                                                >Đại học Công nghệ Bưu chính
+                                                Viễn thông (PTIT) là trường đại
+                                                học trọng điểm quốc gia của Việt
+                                                Nam. PTIT chuyên đào tạo và
+                                                nghiên cứu trong lĩnh vực thông
+                                                tin và truyền thông. Trường có
+                                                hai cơ sở đào tạo chính tại Hà
+                                                Nội và TP.Hồ Chí Minh. PTIT tự
+                                                hào với chất lượng đào tạo hàng
+                                                đầu, nằm trong top 5 cả nước
+                                            </span>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="card">
+                                            <img
+                                                src="assets/img/ptit-4.jpg"
+                                                alt=""
+                                            />
+                                            <span class="card-heading"
+                                                >Học Viện Công nghệ Bưu chính
+                                                Viễn thông (PTIT)</span
+                                            >
+                                            <span class="card-info"
+                                                >Thư viện PTIT là trung tâm
+                                                thông tin học thuật phong phú.
+                                                Cung cấp sách giáo trình, bài
+                                                giảng, đề tài nghiên cứu và tài
+                                                liệu điện tử. Đây là nơi lý
+                                                tưởng cho sinh viên PTIT nâng
+                                                cao kiến thức
+                                            </span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="statictic">
+                            <div class="count">
+                                <span class="material-symbols-outlined icon">
+                                    upload_file
+                                </span>
+                                <div class="info">
+                                    <span class="number">100+</span
+                                    ><span class="desc"
+                                        >Tài liệu đã tải lên</span
+                                    >
+                                </div>
+                            </div>
+                            <div class="contributor">
+                                <span class="material-symbols-outlined icon">
+                                    diversity_2
+                                </span>
+                                <div class="info">
+                                    <span class="number">1</span>
+                                    <span class="desc"
+                                        >Người đã tham gia đóng góp</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cta">
+                            <span class="quote"
+                                >&ldquo;Ptiters are united by a share
+                                purpose.&rdquo;</span
+                            >
+                            <span class="message"
+                                >Hãy cùng nhau chia sẻ và đóng góp tài liệu học
+                                tập để tạo nên một cộng đồng học tập mạnh mẽ
+                                hơn. Mỗi sự chia sẻ nhỏ của bạn sẽ giúp ích rất
+                                nhiều cho những khóa sau này</span
+                            >
+                            <a
+                                href="https://drive.google.com/drive/folders/1VE_ZPRR1fkhulCm34iuFMITRI3n4jvHk?hl=vi"
+                                style="
+                                    padding: 14px 24px;
+                                    background: var(--primary-color);
+                                    color: white;
+                                    font-size: 24px;
+                                "
+                                class="button"
+                            >
+                                Give to the Documents
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Chatbot Widget -->
+        <div id="chatbotWidget" class="chatbot-widget">
+            <div class="chatbot-header">
+            <span>StudyMate Assistant</span>
+            <button id="minimizeChatbot" class="chatbot-btn">−</button>
+            <button id="closeChatbot" class="chatbot-btn">×</button>
+            </div>
+            <div id="chatbotMessages" class="chatbot-messages"></div>
+            <div class="chatbot-input">
+            <input type="text" id="chatbotInput" placeholder="Nhập câu hỏi của bạn...">
+            <button id="sendMessage" class="chatbot-send-btn">
+                <span class="material-symbols-outlined">send</span>
+            </button>
+            </div>
+        </div>
+        
+        <!-- Chatbot Toggle Button -->
+        <button id="toggleChatbot" class="chatbot-toggle-btn">
+            <span class="material-symbols-outlined">chat</span>
+        </button>
+        <script src="./assets/js/script.js"></script>
+        <script>
+            $.ajax({
+                url: "./assets/data/major.json",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    var list_major = document.querySelector(".section1 ul");
+                    list_major.innerHTML = "";
+                    data.forEach((major) => {
+                        console.log(major.major_id + " | " + major.major_name);
+                        const listItem =
+                            `<li><a href="${major?.path ? major.path : 'major.html'}">${major.major_name}</li></a>`;
+                        list_major.insertAdjacentHTML("beforeend", listItem);
+                    });
+
+                    registerCookie();
+                },
+            });
+            console.log("Cookie = " + document.cookie);
+        </script>
+        <script>
+            let data = [];
+            $.ajax({
+                url: "./assets/data/data.json",
+                dataType: "json",
+                success: function (dataObject) {
+                    data = [
+                        ...dataObject.MonHocChung,
+                        ...dataObject.CongNgheThongTin,
+                    ];
+
+                    console.log("DỮ LIỆU MÔN HỌC LẤY VỀ ĐƯỢC: ");
+                    data.forEach((mon) => {
+                        console.log(mon.name + " | " + mon.link);
+                    });
+                },
+                error: function () {
+                    console.log("CHƯA LẤY ĐƯỢC DỮ LIỆU");
+                },
+            });
+
+            var search_btn = document.querySelector(".search-box span");
+            var search_input = document.querySelector(".search-box input");
+            var suggestionContainer = document.querySelector(".suggestion");
+
+            var suggestionList = document.querySelector(".suggestion ul");
+
+            function performSearch() {
+                console.log("PERFORM SEARCH");
+
+                suggestionList.innerHTML = "";
+
+                var keyword = search_input.value.toLowerCase();
+                if (keyword === "") {
+                    suggestionContainer.style.display = "none";
+                    return;
+                }
+                const results = data
+                    .filter((item) => item.name.toLowerCase().includes(keyword))
+                    .slice(0, 7)
+                    .map((item) => {
+                        // Tạo một thuộc tính mới để chứa tên đã bôi đậm
+                        const highlightedName = item.name.replace(
+                            new RegExp(keyword, "gi"),
+                            (match) =>
+                                `<span class="highlight-keyword">` +
+                                match +
+                                `</span>`
+                        );
+                        return {
+                            ...item, // Giữ nguyên các thuộc tính ban đầu
+                            highlightedName, // Thêm thuộc tính bôi đậm
+                        };
+                    });
+                console.log("RESULTS LENGTH = " + results.length);
+                results.forEach((item) => {
+                    console.log("ITEM: " + JSON.stringify(item));
+                    var li = document.createElement("li");
+                    var a = document.createElement("a");
+                    a.innerHTML = item.highlightedName;
+                    a.target = "_blank";
+                    a.href = item.link;
+                    li.append(a);
+                    suggestionList.insertAdjacentElement("beforeend", li);
+                });
+
+                console.log("RESULTS LENGTH ->>>> = " + results.length);
+                if (search_input.value || results.length > 0) {
+                    console.log("HIỂN THỊ GỢI Ý");
+                    console.log(suggestionList);
+                    suggestionContainer.style.display = "block"; // Hiển thị gợi ý nếu có
+                } else {
+                    console.log("Chưa nhập gì hoặc không có kết quả");
+                }
+            }
+
+            search_btn.addEventListener("click", function () {
+                performSearch();
+            });
+
+            search_input.addEventListener("input", function () {
+                performSearch();
+            });
+
+            search_input.addEventListener("focus", () => {
+                console.log("FOCUS");
+                if (search_input.value) {
+                    suggestionContainer.style.display = "block"; // Hiển thị gợi ý nếu có
+                }
+            });
+
+            // Khi người dùng rời khỏi ô input
+            search_input.addEventListener("blur", () => {
+                console.log("BLUR");
+                setTimeout(() => {
+                    suggestionContainer.style.display = "none"; // Ẩn gợi ý sau khi rời focus
+                }, 200); // Thêm delay nhỏ để đảm bảo không bị ẩn trước khi click vào gợi ý
+            });
+        </script>
+        <script>
+            // Chatbot Functionality
+            $(document).ready(function() {
+              const chatbotWidget = $('#chatbotWidget');
+              const toggleBtn = $('#toggleChatbot');
+              const minimizeBtn = $('#minimizeChatbot');
+              const closeBtn = $('#closeChatbot');
+              const messagesContainer = $('#chatbotMessages');
+              const inputField = $('#chatbotInput');
+              const sendBtn = $('#sendMessage');
+              
+              let isChatbotOpen = false;
+              
+              // Toggle chatbot visibility
+              toggleBtn.click(function() {
+                isChatbotOpen = !isChatbotOpen;
+                if (isChatbotOpen) {
+                  chatbotWidget.addClass('active');
+                  toggleBtn.hide();
+                  // Add welcome message if first time
+                  if (messagesContainer.children().length === 0) {
+                    addBotMessage('Xin chào! Mình là StudyMate Assistant. Mình có thể giúp gì cho bạn?');
+                  }
+                } else {
+                  chatbotWidget.removeClass('active');
+                  toggleBtn.show();
+                }
+              });
+              
+              // Minimize chatbot
+              minimizeBtn.click(function() {
+                chatbotWidget.removeClass('active');
+                toggleBtn.show();
+                isChatbotOpen = false;
+              });
+              
+              // Close chatbot
+              closeBtn.click(function() {
+                chatbotWidget.removeClass('active');
+                toggleBtn.show();
+                isChatbotOpen = false;
+              });
+              
+              // Send message function
+              function sendMessage() {
+                const message = inputField.val().trim();
+                if (message !== '') {
+                  addUserMessage(message);
+                  inputField.val('');
+                  // Simulate bot response
+                  setTimeout(() => {
+                    handleBotResponse(message);
+                  }, 500);
+                }
+              }
+              
+              // Send message on button click
+              sendBtn.click(sendMessage);
+              
+              // Send message on Enter key
+              inputField.keypress(function(e) {
+                if (e.which === 13) {
+                  sendMessage();
+                }
+              });
+              
+              // Add user message to chat
+              function addUserMessage(message) {
+                const messageElement = $(`<div class="message user-message">${message}</div>`);
+                messagesContainer.append(messageElement);
+                scrollToBottom();
+              }
+              
+              // Add bot message to chat
+              function addBotMessage(message) {
+                const messageElement = $(`<div class="message bot-message">${message}</div>`);
+                messagesContainer.append(messageElement);
+                scrollToBottom();
+              }
+              
+              // Scroll to bottom of messages
+              function scrollToBottom() {
+                messagesContainer.scrollTop(messagesContainer[0].scrollHeight);
+              }
+              
+              // Simple bot response handler
+              function handleBotResponse(userMessage) {
+                const lowerMessage = userMessage.toLowerCase();
+                let response = "";
+                
+                // Phần chào hỏi và các chức năng cơ bản giữ nguyên
+                if (/^(chào|hello|hi|xin chào)/i.test(lowerMessage)) {
+                    response = "Xin chào! Bạn cần hỗ trợ gì về tài liệu học tập?";
+                } 
+                else if (/(tài liệu|tìm kiếm)/i.test(lowerMessage)) {
+                    response = "Bạn có thể tìm kiếm tài liệu bằng ô tìm kiếm phía trên trang hoặc hỏi mình về chủ đề cụ thể.";
+                }
+                else if (/(cảm ơn|thanks)/i.test(lowerMessage)) {
+                    response = "Không có gì! Nếu bạn cần thêm thông tin, cứ hỏi mình nhé!";
+                }
+                
+                // Thêm các môn học theo học kỳ
+                else if (/(triết học|mác-lênin)/i.test(lowerMessage)) {
+                    response = "Môn Triết học Mác-Lênin (3 TC):\n- Giới thiệu các nguyên lý cơ bản\n- Tài liệu: Giáo trình Triết học, Slide bài giảng\n- Thường học vào học kỳ 1";
+                }
+                else if (/(tin học cơ sở|tin học cơ bản)/i.test(lowerMessage)) {
+                    response = "Tin học cơ sở (2 TC):\n- Học kỳ 1: Tin học cơ sở 1\n- Học kỳ 2: Tin học cơ sở 2\n- Nội dung: Cơ bản về sử dụng máy tính và phần mềm văn phòng";
+                }
+                else if (/(giải tích|toán giải tích)/i.test(lowerMessage)) {
+                    response = "Các môn Giải tích:\n- Giải tích 1 (3 TC): Học kỳ 1\n- Giải tích 2 (3 TC): Học kỳ 2\n- Nội dung: Phép tính vi phân, tích phân, chuỗi số";
+                }
+                else if (/(vật lý 1|vật lý đại cương)/i.test(lowerMessage)) {
+                    response = "Vật lý 1 (4 TC):\n- Học kỳ 2\n- Nội dung: Cơ học, nhiệt động lực học\n- Có phòng thí nghiệm đi kèm";
+                }
+                else if (/(tín hiệu|hệ thống)/i.test(lowerMessage)) {
+                    response = "Tín hiệu và hệ thống (3 TC):\n- Học kỳ 3\n- Môn tiên quyết cho các môn chuyên ngành Viễn thông\n- Nội dung: Phân tích tín hiệu, hệ thống tuyến tính";
+                }
+                else if (/(điện tử số|kỹ thuật số)/i.test(lowerMessage)) {
+                    response = "Điện tử số (3 TC):\n- Học kỳ 4\n- Nội dung: Cổng logic, vi xử lý, FPGA\n- Có bài tập thực hành với kit phát triển";
+                }
+                else if (/(truyền thông|truyền sóng)/i.test(lowerMessage)) {
+                    response = "Truyền sóng và anten (3 TC):\n- Học kỳ 5\n- Môn chuyên ngành Viễn thông\n- Nội dung: Lý thuyết truyền sóng, thiết kế anten";
+                }
+                else if (/(kiến trúc máy tính|computer architecture)/i.test(lowerMessage)) {
+                    response = "Kiến trúc máy tính (3 TC):\n- Học kỳ 5\n- Nội dung: Tổ chức bộ xử lý, pipeline, bộ nhớ cache\n- Tiên quyết: Điện tử số";
+                }
+                else if (/(hệ điều hành|operating system)/i.test(lowerMessage)) {
+                    response = "Hệ điều hành (2 TC):\n- Học kỳ 6\n- Nội dung: Quản lý tiến trình, bộ nhớ, hệ thống file\n- Thực hành trên Linux";
+                }
+                else if (/(mạng máy tính|computer network)/i.test(lowerMessage)) {
+                    response = "Mạng máy tính (3 TC):\n- Học kỳ 6\n- Nội dung: Mô hình OSI, TCP/IP, routing, switching\n- Có bài lab với Cisco Packet Tracer";
+                }
+                else if (/(đồ án|project)/i.test(lowerMessage)) {
+                    response = "Đồ án chuyên ngành:\n- Thường ở học kỳ 7 hoặc 8\n- Yêu cầu hoàn thành ít nhất 100 TC\n- Có thể làm theo nhóm hoặc cá nhân";
+                }
+                else if (/(thực tập|tốt nghiệp)/i.test(lowerMessage)) {
+                    response = "Thực tập tốt nghiệp (12 TC):\n- Học kỳ 9\n- Yêu cầu hoàn thành tất cả môn học\n- Thời gian: 3-6 tháng tại doanh nghiệp";
+                }
+                else if (/(công nghệ phần mềm|software engineering)/i.test(lowerMessage)) {
+                    response = "Công nghệ phần mềm (3 TC):\n- Học kỳ 5\n- Nội dung: Quy trình phát triển phần mềm, Agile, Scrum, UML\n- Làm dự án nhóm về phần mềm thực tế";
+                }   
+                // Các phần khác giữ nguyên
+                else if (/(môn học|chuyên ngành)/i.test(lowerMessage)) {
+                    response = "StudyMate có tài liệu cho nhiều chuyên ngành: Điện tử viễn thông, Công nghệ thông tin, Khoa học máy tính... Bạn quan tâm đến ngành nào?";
+                }
+                else if (/(ptit|học viện)/i.test(lowerMessage)) {
+                    response = "PTIT (Học viện Công nghệ Bưu chính Viễn thông) là một trong những trường đào tạo CNTT hàng đầu Việt Nam. Bạn muốn biết thông tin gì cụ thể?";
+                }
+                else if (/(StudyMate|giới thiệu)/i.test(lowerMessage)) {
+                    response = "StudyMate là một phần mềm hỗ trợ học tập cho sinh viên:\n- Cung cấp tài liệu học tập, lịch thi, và hướng dẫn sử dụng hệ thống QLDT.\n- Tích hợp chatbot AI giúp giải đáp thắc mắc nhanh chóng.\n- Giao diện thân thiện, dễ sử dụng, hỗ trợ trên cả web và mobile.\n- Có tính năng nhắc nhở lịch học, quản lý thời gian hiệu quả.";
+                }
+
+                else {
+                    response = "Mình chưa hiểu rõ câu hỏi của bạn. Bạn có thể hỏi về:\n- Tài liệu môn học cụ thể\n- Chương trình đào tạo\n- Thông tin các môn học";
+                }
+                
+                addBotMessage(response);
+            }
+              // Initialize chatbot with welcome message after 3 seconds
+              setTimeout(() => {
+                if (!isChatbotOpen) {
+                  toggleBtn.css('background-color', '#d60e39'); // Change color to indicate new message
+                }
+              }, 3000);
+            });
+            </script>
+    </body>
+</html>

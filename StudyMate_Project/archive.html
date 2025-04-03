@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kho Lưu Trữ - StudyMate</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        :root {
+            --primary-color: #d32f2f;
+            --secondary-color: #f5f5f5;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            color: #333;
+        }
+        
+        .header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .back-button {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        
+        .back-button i {
+            margin-right: 5px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        .breadcrumb {
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .upload-section {
+            background-color: var(--secondary-color);
+            border: 2px dashed var(--primary-color);
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .upload-section.drag-over {
+            background-color: #ffebee;
+            border-color: #b71c1c;
+        }
+        
+        .upload-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        
+        .upload-btn:hover {
+            background-color: #b71c1c;
+        }
+        
+        .document-list {
+            margin-top: 30px;
+        }
+        
+        .document-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.2s;
+        }
+        
+        .document-item:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .document-info {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+        }
+        
+        .document-icon {
+            color: var(--primary-color);
+            margin-right: 15px;
+            font-size: 24px;
+        }
+        
+        .document-name {
+            font-weight: bold;
+        }
+        
+        .document-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.2s;
+        }
+        
+        .delete-btn:hover {
+            color: var(--primary-color);
+        }
+        
+        .download-btn:hover {
+            color: #1976d2;
+        }
+        
+        h1, h2 {
+            color: var(--primary-color);
+        }
+        
+        .file-type {
+            font-size: 12px;
+            color: #666;
+            margin-top: 3px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 0;
+            color: #666;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background-color: #e0e0e0;
+            margin-top: 10px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0%;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="home.html" class="back-button">
+            <i class="material-icons">arrow_back</i>
+            Trang chủ
+        </a>
+        <h1>Kho Lưu Trữ</h1>
+    </div>
+    
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="home.html">Home</a> &gt; Kho Lưu Trữ
+        </div>
+        
+        <div class="upload-section" id="dropZone">
+            <h2>Thêm tài liệu mới</h2>
+            <p>Kéo thả tệp vào đây hoặc nhấn nút bên dưới</p>
+            <input type="file" id="fileInput" style="display: none;" multiple>
+            <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                <i class="material-icons">cloud_upload</i> Chọn tệp
+            </button>
+            <div class="progress-bar" id="uploadProgressBar" style="display: none;">
+                <div class="progress" id="uploadProgress"></div>
+            </div>
+        </div>
+        
+        <div class="document-list">
+            <h2>Tài liệu của tôi</h2>
+            <div id="documentsContainer">
+                <div class="empty-state">
+                    <i class="material-icons" style="font-size: 48px; color: #bdbdbd;">folder_open</i>
+                    <p>Chưa có tài liệu nào được tải lên</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const fileInput = document.getElementById('fileInput');
+            const documentsContainer = document.getElementById('documentsContainer');
+            const dropZone = document.getElementById('dropZone');
+            const uploadProgressBar = document.getElementById('uploadProgressBar');
+            const uploadProgress = document.getElementById('uploadProgress');
+            
+            // Load documents from localStorage
+            let documents = JSON.parse(localStorage.getItem('documents')) || [];
+            
+            // Render initial documents
+            renderDocuments();
+            
+            // File input change event
+            fileInput.addEventListener('change', handleFileSelect);
+            
+            // Drag and drop events
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropZone.addEventListener(eventName, highlight, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, unhighlight, false);
+            });
+            
+            function highlight() {
+                dropZone.classList.add('drag-over');
+            }
+            
+            function unhighlight() {
+                dropZone.classList.remove('drag-over');
+            }
+            
+            // Handle dropped files
+            dropZone.addEventListener('drop', handleDrop, false);
+            
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                handleFiles(files);
+            }
+            
+            function handleFileSelect(e) {
+                handleFiles(e.target.files);
+                fileInput.value = ''; // Reset input
+            }
+            
+            function handleFiles(files) {
+                if (files.length === 0) return;
+                
+                uploadProgressBar.style.display = 'block';
+                uploadProgress.style.width = '0%';
+                
+                // Simulate upload progress
+                let progress = 0;
+                const progressInterval = setInterval(() => {
+                    progress += 10;
+                    uploadProgress.style.width = `${progress}%`;
+                    
+                    if (progress >= 100) {
+                        clearInterval(progressInterval);
+                        processFiles(files);
+                        uploadProgressBar.style.display = 'none';
+                    }
+                }, 100);
+            }
+            
+            function processFiles(files) {
+                const newDocuments = [];
+                
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    const fileType = getFileType(file.name);
+                    
+                    newDocuments.push({
+                        id: Date.now() + i,
+                        name: file.name,
+                        size: formatFileSize(file.size),
+                        type: fileType,
+                        uploadedAt: new Date().toISOString(),
+                        file: file // Note: In a real app, you would upload this to a server
+                    });
+                }
+                
+                // Add to existing documents
+                documents = [...documents, ...newDocuments];
+                
+                // Save to localStorage
+                localStorage.setItem('documents', JSON.stringify(documents));
+                
+                // Render updated list
+                renderDocuments();
+            }
+            
+            function renderDocuments() {
+                if (documents.length === 0) {
+                    documentsContainer.innerHTML = `
+                        <div class="empty-state">
+                            <i class="material-icons" style="font-size: 48px; color: #bdbdbd;">folder_open</i>
+                            <p>Chưa có tài liệu nào được tải lên</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                documentsContainer.innerHTML = '';
+                
+                documents.forEach(doc => {
+                    const docElement = document.createElement('div');
+                    docElement.className = 'document-item';
+                    docElement.innerHTML = `
+                        <div class="document-info">
+                            <i class="material-icons document-icon">${getFileIcon(doc.type)}</i>
+                            <div style="flex-grow: 1;">
+                                <div class="document-name">${doc.name}</div>
+                                <div class="file-type">${doc.type.toUpperCase()} • ${doc.size} • ${new Date(doc.uploadedAt).toLocaleDateString()}</div>
+                            </div>
+                        </div>
+                        <div class="document-actions">
+                            <button class="action-btn download-btn" title="Tải xuống" onclick="downloadDocument(${doc.id})">
+                                <i class="material-icons">cloud_download</i>
+                            </button>
+                            <button class="action-btn delete-btn" title="Xóa" onclick="deleteDocument(${doc.id})">
+                                <i class="material-icons">delete</i>
+                            </button>
+                        </div>
+                    `;
+                    
+                    documentsContainer.appendChild(docElement);
+                });
+            }
+            
+            function getFileType(filename) {
+                const extension = filename.split('.').pop().toLowerCase();
+                const fileTypes = {
+                    'pdf': 'pdf',
+                    'doc': 'word',
+                    'docx': 'word',
+                    'xls': 'excel',
+                    'xlsx': 'excel',
+                    'ppt': 'powerpoint',
+                    'pptx': 'powerpoint',
+                    'txt': 'text',
+                    'jpg': 'image',
+                    'jpeg': 'image',
+                    'png': 'image',
+                    'gif': 'image',
+                    'zip': 'archive',
+                    'rar': 'archive',
+                    'mp3': 'audio',
+                    'wav': 'audio',
+                    'mp4': 'video',
+                    'avi': 'video'
+                };
+                
+                return fileTypes[extension] || 'file';
+            }
+            
+            function getFileIcon(fileType) {
+                const icons = {
+                    'pdf': 'picture_as_pdf',
+                    'word': 'description',
+                    'excel': 'table_chart',
+                    'powerpoint': 'slideshow',
+                    'text': 'notes',
+                    'image': 'image',
+                    'archive': 'folder_zip',
+                    'audio': 'audiotrack',
+                    'video': 'movie',
+                    'file': 'insert_drive_file'
+                };
+                
+                return icons[fileType] || 'insert_drive_file';
+            }
+            
+            // Make functions available globally
+            window.deleteDocument = function(id) {
+                if (confirm('Bạn có chắc chắn muốn xóa tài liệu này?')) {
+                    documents = documents.filter(doc => doc.id !== id);
+                    localStorage.setItem('documents', JSON.stringify(documents));
+                    renderDocuments();
+                }
+            };
+            
+            window.downloadDocument = function(id) {
+                const doc = documents.find(d => d.id === id);
+                if (doc) {
+                    // In a real app, this would download from server
+                    alert(`Đã bắt đầu tải xuống: ${doc.name}\n\n(Lưu ý: Đây là demo nên không thực sự tải file)`);
+                }
+            };
+            
+            window.formatFileSize = function(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            };
+        });
+    </script>
+</body>
+</html>
