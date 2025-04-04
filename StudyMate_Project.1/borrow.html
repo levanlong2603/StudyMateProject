@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="StudyMate" />
+    <meta property="og:description" content="Ptiters are united by a share purpose" />
+    <meta property="og:image" content="./assets/img/icon.svg" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="./assets/img/icon.svg" />
+
+    <title>StudyMate - Borrow Books</title>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="./assets/css/borrow.css" />
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <!-- JavaScript Libraries -->
+    <script src="./assets/js/jquery3.6.0.js"></script>
+    <script src="./assets/js/cookie_controller.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <script src="./assets/js/pageinit.js"></script>
+
+    <div class="header">
+        <div class="main-content">
+            <div class="body" style="position: relative">
+                <div class="section1">
+                    <div class="title">
+                        <h3 style="margin-top: 24px">Library Documents</h3>
+                        <p style="font-size: 16px; margin-top: 8px; padding-right: 64px; line-height: 1.35; opacity: 0.7;">
+                            Access all available documents in PTIT library
+                        </p>
+                    </div>
+
+                    <div class="filter">
+                        <h3 style="margin-top: 56px">Filter</h3>
+                        <ul>
+                            <li>
+                                <img src="./assets/img/select.svg" alt="" data-criteria="newest" /><span>Newest Documents</span>
+                            </li>
+                            <li>
+                                <img src="./assets/img/select.svg" alt="" data-criteria="quantity" /><span>By Quantity</span>
+                            </li>
+                            <li>
+                                <img src="./assets/img/select.svg" alt="" data-criteria="mostBorrowed" /><span>Most Borrowed</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="section2">
+                    <div class="search">
+                        <div class="search-box">
+                            <input type="text" name="search_box" id="searchInput" 
+                                   placeholder="Search by document name, author..." 
+                                   class="input_text" required />
+                            <span class="material-symbols-outlined" style="font-size: 26px">
+                                search
+                            </span>
+                            <div id="searchSuggestions" class="search-suggestions"></div>
+                        </div>
+                    </div>
+
+                    <div class="show_selected">
+                        <div class="show_selected__header">
+                            <div class="icon_book">
+                                <img src="./assets/img/icon_book.svg" alt="" />
+                            </div>
+                            <div class="show_selected__number">
+                                <span></span>
+                                <div style="display: flex; align-items: center; justify-content: flex-end;">
+                                    <span style="margin-right: 8px; cursor: pointer;" onclick="generatePDF()">Export to PDF</span>
+                                    <img src="./assets/img/icon_dropdown.svg" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="show_selected__content">
+                            <ul></ul>
+                        </div>
+                        <span class="btn_borrow"> Borrow Books </span>
+                    </div>
+
+                    <div class="search_result">
+                        <ul id="results"></ul>
+                        <div class="pageController" id="page-controller">
+                            <div class="pageController1">
+                                <span class="btnPagePrev btnPage btnDisable">Prev</span>
+                                <div class="listPage"></div>
+                                <span class="btnPageNext btnPage">Next</span>
+                            </div>
+                            <div class="pageController2">
+                                <span>Page</span>
+                                <div class="inputPage">
+                                    <input type="number" />
+                                </div>
+                                <span class="pageInformation">of 100</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin: 0 auto; font-size: 18px; text-align: center; margin-bottom: 24px;">
+                        <span style="width: 100%">Borrowing Form Preview</span>
+                    </div>
+                    <div style="width: 100%; overflow-x: auto">
+                        <div class="form-register" id="exportContent" style="margin: 0 auto; margin-bottom: 80px">
+                            <div class="top"></div>
+                            <div class="form-content">
+                                <div class="form-header">
+                                    <img src="./assets/img/logo-1.svg" alt="" class="logo" />
+                                    <div class="header-content">
+                                        <span class="library-name">PTIT Library</span>
+                                        <span class="school-name">Posts and Telecommunications Institute of Technology</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-meta-data">
+                                    <div class="form-title">
+                                        <span class="title">Book Borrowing Form</span>
+                                        <span><i>Register no</i>: <span id="form-register-number">#325467</span></span>
+                                        <span class="register-date"><i>Register date</i>: <span id="form-register-date">11/12/2024</span></span>
+                                    </div>
+                                    <div class="form-information">
+                                        <span class="title">Borrower Information</span>
+                                        <img src="./assets/img/avatar.jpg" alt="" class="form-avatar" />
+                                        <span class="form-to"><i>Name</i>:
+                                            <input id="input-name" type="text" placeholder="Full Name" required /></span>
+                                        <span class="form-student-id"><i>Student ID</i>:
+                                            <input id="input-student-id" type="text" placeholder="Student ID" required /></span>
+                                        <span class="form-class"><i>Class</i>:
+                                            <input id="input-class" type="text" placeholder="Class Name" required /></span>
+                                        <span class="form-email"><i>Email</i>:
+                                            <input id="input-email" type="email" style="min-width: 272px" placeholder="@stu.ptit.edu.vn" required /></span>
+                                    </div>
+                                </div>
+
+                                <table id="form-books-table">
+                                    <tr>
+                                        <td>No.</td>
+                                        <td>Document Name</td>
+                                        <td>Author</td>
+                                        <td>Document Code</td>
+                                    </tr>
+                                    <!-- Rows will be added dynamically -->
+                                </table>
+
+                                <div class="form-table-data">
+                                    <div class="form-total">
+                                        <span><i>Total books</i>: <span id="form-total-books">0</span></span>
+                                        <span class="register-date"><i>Register date</i>: <span id="form-register-date2">11/12/2024</span></span>
+                                        <span class="due-date"><i>Due date</i>: <span id="form-due-date">11/12/2024</span></span>
+                                    </div>
+                                    <div class="form-signature">
+                                        <span id="signature-name">Signature</span>
+                                        <span id="signature-full-name">Full Name</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-footer">
+                                    <span><i>PTIT Library</i></span>
+                                    <span>Address: Km10, Nguyen Trai Road, Ha Dong, Hanoi, Vietnam</span>
+                                    <span>Website: http://ptit.library.com</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/js/borrow.js"></script>
+</body>
+</html>

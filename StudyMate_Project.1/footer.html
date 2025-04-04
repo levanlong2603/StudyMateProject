@@ -1,0 +1,93 @@
+<footer style="background-color: #222; color: white; padding: 60px 0 30px;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
+        <div class="footer-column">
+            <h3 style="font-size: 1.2rem; margin-bottom: 20px; color: #fff; position: relative; padding-bottom: 10px;">
+                Về StudyMate
+                <span style="content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 2px; background-color: #e51e2a;"></span>
+            </h3>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="margin-bottom: 12px;"><a href="about.html" style="color: #bbb; text-decoration: none; transition: all 0.3s;">Giới thiệu</a></li>
+                <li style="margin-bottom: 12px;"><a href="terms.html" style="color: #bbb; text-decoration: none; transition: all 0.3s;">Điều khoản sử dụng</a></li>
+                <li style="margin-bottom: 12px;"><a href="privacy.html" style="color: #bbb; text-decoration: none; transition: all 0.3s;">Chính sách bảo mật</a></li>
+                <li style="margin-bottom: 12px;"><a href="contact.html" style="color: #bbb; text-decoration: none; transition: all 0.3s;">Liên hệ</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-column">
+            <h3 style="font-size: 1.2rem; margin-bottom: 20px; color: #fff; position: relative; padding-bottom: 10px;">
+                Tài nguyên
+                <span style="content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 2px; background-color: #e51e2a;"></span>
+            </h3>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="margin-bottom: 12px;"><a href="major.html" style="color: #bbb; text-decoration: none; transition: all 0.3s;">Chuyên ngành</a></li>
+                <li style="margin-bottom: 12px;"><a href="borrow.html" style="color: #bbb; text-decoration: none; transition: all 0.3s;">Tài liệu thư viện</a></li>
+                <li style="margin-bottom: 12px;"><a href="archive.html" style="color: #bbb; text-decoration: none; transition: all 0.3s;">Tài liệu của tôi</a></li>
+                <li style="margin-bottom: 12px;"><a href="#!" style="color: #bbb; text-decoration: none; transition: all 0.3s;">Hướng dẫn sử dụng</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-column">
+            <h3 style="font-size: 1.2rem; margin-bottom: 20px; color: #fff; position: relative; padding-bottom: 10px;">
+                Hỗ trợ
+                <span style="content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 2px; background-color: #e51e2a;"></span>
+            </h3>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="margin-bottom: 12px;"><a href="#!" style="color: #bbb; text-decoration: none; transition: all 0.3s;">Câu hỏi thường gặp</a></li>
+                <li style="margin-bottom: 12px;"><a href="#!" style="color: #bbb; text-decoration: none; transition: all 0.3s;">Hướng dẫn đăng tải</a></li>
+                <li style="margin-bottom: 12px;"><a href="#!" style="color: #bbb; text-decoration: none; transition: all 0.3s;">Báo lỗi hệ thống</a></li>
+                <li style="margin-bottom: 12px;"><a href="#!" style="color: #bbb; text-decoration: none; transition: all 0.3s;">Góp ý cải tiến</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-column">
+            <h3 style="font-size: 1.2rem; margin-bottom: 20px; color: #fff; position: relative; padding-bottom: 10px;">
+                Kết nối
+                <span style="content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 2px; background-color: #e51e2a;"></span>
+            </h3>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="margin-bottom: 12px;"><a href="#!" style="color: #bbb; text-decoration: none; transition: all 0.3s;">Facebook</a></li>
+                <li style="margin-bottom: 12px;"><a href="#!" style="color: #bbb; text-decoration: none; transition: all 0.3s;">Zalo</a></li>
+                <li style="margin-bottom: 12px;"><a href="#!" style="color: #bbb; text-decoration: none; transition: all 0.3s;">Email</a></li>
+                <li style="margin-bottom: 12px;"><a href="#!" style="color: #bbb; text-decoration: none; transition: all 0.3s;">Cộng đồng sinh viên</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div style="text-align: center; padding-top: 30px; margin-top: 30px; border-top: 1px solid #444; color: #999; font-size: 0.9rem;">
+        © 2023 StudyMate - Học viện Công nghệ Bưu chính Viễn thông. Mọi quyền được bảo lưu.
+    </div>
+
+    <script>
+    // JavaScript cho footer
+    document.addEventListener('DOMContentLoaded', function() {
+        // Hiệu ứng hover cho các link trong footer
+        const footerLinks = document.querySelectorAll('.footer-column a');
+        footerLinks.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                this.style.color = '#e51e2a';
+                this.style.paddingLeft = '5px';
+            });
+            link.addEventListener('mouseleave', function() {
+                this.style.color = '#bbb';
+                this.style.paddingLeft = '0';
+            });
+        });
+
+        // Cập nhật năm copyright tự động
+        const copyrightElement = document.querySelector('footer div:last-child');
+        if (copyrightElement) {
+            const currentYear = new Date().getFullYear();
+            copyrightElement.textContent = copyrightElement.textContent.replace('2023', currentYear);
+        }
+
+        // Theo dõi sự kiện click trên các link footer
+        document.querySelectorAll('footer a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Gửi dữ liệu analytics nếu cần
+                console.log('Footer link clicked:', this.href);
+                // Có thể thêm code gửi event đến Google Analytics ở đây
+            });
+        });
+    });
+    </script>
+</footer>

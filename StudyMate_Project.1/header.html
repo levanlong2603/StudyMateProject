@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyMate - Hệ thống học tập PTIT</title>
+    <link rel="stylesheet" href="assets/css/chatbot.css">
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <script src="./assets/js/jquery3.6.0.js"></script>
+    <style>
+        /* Header Styles */
+        nav {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .main-content .body {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            height: 70px;
+        }
+        
+        .logo {
+            background: url(assets/img/logo.svg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position-y: 50%;
+            width: calc(2.251 * 70px);
+            height: 70px;
+            margin-right: 30px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav ul li {
+            position: relative;
+            margin-right: 20px;
+        }
+        
+        nav ul li a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: #f5f5f5;
+            color: #e51e2a;
+        }
+        
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            z-index: 1;
+            top: 100%;
+            left: 0;
+        }
+        
+        .dropdown-content li {
+            margin: 0;
+        }
+        
+        .dropdown-content a {
+            display: block;
+            padding: 10px 15px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f8f8f8;
+            color: #e51e2a;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Search Box */
+        .search-box {
+            position: relative;
+            margin-left: 30px;
+            width: 250px;
+        }
+        
+        .input_text {
+            width: 100%;
+            padding: 10px 15px 10px 35px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .input_text:focus {
+            border-color: #e51e2a;
+            box-shadow: 0 0 0 2px rgba(229, 30, 42, 0.2);
+        }
+        
+        .search-box .material-symbols-outlined {
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+        
+        .suggestion {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 0 0 4px 4px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            z-index: 10;
+        }
+        
+        .suggestion ul {
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .suggestion li a {
+            display: block;
+            padding: 8px 15px;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .suggestion li a:hover {
+            background-color: #f8f8f8;
+            color: #e51e2a;
+        }
+        
+        /* Language/Login */
+        .language {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .language a {
+            color: #e51e2a;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .language a:hover {
+            background-color: #f8f8f8;
+        }
+        
+        /* Breadcrumb */
+        .ulti {
+            background-color: #f8f8f8;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .breadcrumb ul {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .breadcrumb a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .breadcrumb a:hover {
+            color: #e51e2a;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .main-content .body {
+                flex-wrap: wrap;
+                height: auto;
+                padding: 15px 0;
+            }
+            
+            .logo {
+                width: 150px;
+                height: 50px;
+                margin-right: 15px;
+            }
+            
+            nav ul {
+                order: 3;
+                width: 100%;
+                margin-top: 15px;
+                justify-content: center;
+            }
+            
+            .search-box {
+                order: 2;
+                margin-left: auto;
+                width: 200px;
+            }
+            
+            .language {
+                order: 1;
+                margin-left: auto;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .search-box {
+                width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <nav>
+        <div class="main-content">
+            <div class="body">
+                <div class="logo"></div>
+
+                <ul>
+                    <li class="dropdown">
+                        <a href="major.html">Chuyên ngành <span class="material-symbols-outlined" style="font-size: 18px; vertical-align: middle;">expand_more</span></a>
+                        <ul class="dropdown-content">
+                            <li>
+                                <a href="major.html">Điện Tử Viễn Thông</a>
+                            </li>
+                            <li>
+                                <a href="major1.html">Công Nghệ Thông Tin</a>
+                            </li>
+                            <li><a href="#!">Khoa Học Máy Tính</a></li>
+                            <li><a href="#!">Công Nghệ Đa Phương Tiện</a></li>
+                            <li>
+                                <a href="#!">Công Nghệ Tài Chính - Fintech</a>
+                            </li>
+                            <li><a href="#!">Marketing</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="borrow.html">Tài liệu thư viện</a></li>
+                    <li><a href="archive.html">Tài liệu của tôi</a></li>
+                    <li><a href="about.html">Giới thiệu</a></li>
+                </ul>
+
+                <div class="search-box">
+                    <input
+                        type="text"
+                        name="search_box"
+                        placeholder="Tìm kiếm nhanh"
+                        class="input_text"
+                        required
+                    />
+                    <span class="material-symbols-outlined">search</span>
+                    <div class="suggestion">
+                        <ul>
+                            <!-- Suggestions will be populated by JavaScript -->
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="language">
+                    <a href="login.html">Đăng nhập</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="ulti">
+        <div class="main-content">
+            <div class="body">
+                <div class="breadcrumb">
+                    <ul>
+                        <li>
+                            <a href="home.html" class="home">
+                                <span class="material-symbols-outlined" style="font-size: 20px">
+                                    home
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="home" href="home.html">Home</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Handle search box focus
+            $('.input_text').focus(function() {
+                $(this).parent().find('.suggestion').show();
+            });
+            
+            $('.input_text').blur(function() {
+                setTimeout(() => {
+                    $('.suggestion').hide();
+                }, 200);
+            });
+            
+            // Handle search input
+            $('.input_text').keyup(function() {
+                const query = $(this).val().trim();
+                if (query.length > 0) {
+                    // In a real app, you would make an AJAX call here
+                    const suggestions = [
+                        "Giáo trình Lập trình Web",
+                        "Bài giảng Mạng máy tính",
+                        "Đề thi Toán rời rạc 2023",
+                        "Slide Kỹ thuật lập trình",
+                        "Tài liệu Cơ sở dữ liệu"
+                    ];
+                    
+                    const suggestionList = $('.suggestion ul');
+                    suggestionList.empty();
+                    
+                    suggestions.filter(item => 
+                        item.toLowerCase().includes(query.toLowerCase())
+                    ).forEach(item => {
+                        suggestionList.append(`<li><a href="#!">${item}</a></li>`);
+                    });
+                    
+                    if (suggestionList.children().length > 0) {
+                        $('.suggestion').show();
+                    } else {
+                        $('.suggestion').hide();
+                    }
+                } else {
+                    $('.suggestion').hide();
+                }
+            });
+            
+            // Check login status
+            function checkLoginStatus() {
+                const isLoggedIn = localStorage.getItem('isLoggedIn');
+                if (isLoggedIn) {
+                    $('.language a').text('Tài khoản').attr('href', 'account.html');
+                }
+            }
+            
+            checkLoginStatus();
+            
+            // Dropdown menu hover
+            $('.dropdown').hover(function() {
+                $(this).find('.dropdown-content').stop(true, true).slideDown(200);
+            }, function() {
+                $(this).find('.dropdown-content').stop(true, true).slideUp(200);
+            });
+        });
+    </script>
