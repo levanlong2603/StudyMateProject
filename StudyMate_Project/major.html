@@ -1,308 +1,623 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta property="og:title" content="PTIT Library">
-        <meta property="og:description" content="Ptiters are united by a share purpose">
-        <meta property="og:image" content="https://stellarhold170nt.github.io/PTITLibrary/assets/img/icon.svg">
-        <meta property="og:type" content="website">
-        <link rel="icon" href="https://stellarhold170nt.github.io/PTITLibrary/assets/img/icon.svg">
-        <title>Điện Tử Viễn Thông</title>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Điện Tử Viễn Thông - StudyMate PTIT</title>
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/major.css">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <script src="./assets/js/jquery3.6.0.js"></script>
+</head>
+<body>
+    <!-- Header sẽ được include từ file riêng -->
+    <div id="header-placeholder"></div>
 
-        <link rel="stylesheet" href="./assets/css/reset.css" />
-        <link rel="stylesheet" href="./assets/css/style.css" />
-        <link rel="stylesheet" href="./assets/css/table.css" />
-        <script src="./assets/js/jquery3.6.0.js"></script>
-        <script src="./assets/js/cookie_controller.js"></script>
+    <div class="major-container">
+        <div class="major-header">
+            <h1>Chuyên ngành Điện Tử Viễn Thông</h1>
+            <p class="major-description">
+                Chuyên ngành Điện tử Viễn thông trang bị cho sinh viên kiến thức chuyên sâu về hệ thống viễn thông, 
+                mạng máy tính, xử lý tín hiệu số, thiết kế mạch điện tử và các công nghệ truyền thông hiện đại.
+            </p>
+        </div>
 
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-        />
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        />
-    </head>
-    <body>
-       <script src="./assets/js/pageinit.js"></script>
-        <div class="header">
-            <div class="main-content">
-                <div class="body">
-                   <table>
+        <div class="curriculum-section">
+            <h2>Chương trình đào tạo</h2>
+            <div class="semester-filter">
+                <button class="filter-btn active" data-semester="all">Tất cả</button>
+                <button class="filter-btn" data-semester="1">Học kỳ 1</button>
+                <button class="filter-btn" data-semester="2">Học kỳ 2</button>
+                <button class="filter-btn" data-semester="3">Học kỳ 3</button>
+                <button class="filter-btn" data-semester="4">Học kỳ 4</button>
+                <button class="filter-btn" data-semester="5">Học kỳ 5</button>
+                <button class="filter-btn" data-semester="6">Học kỳ 6</button>
+                <button class="filter-btn" data-semester="7">Học kỳ 7</button>
+                <button class="filter-btn" data-semester="8">Học kỳ 8</button>
+                <button class="filter-btn" data-semester="9">Học kỳ 9</button>
+            </div>
+
+            <div class="curriculum-table">
+                <table>
+                    <thead>
                         <tr>
-                            <td><span>Học kỳ 1</span><span>(11 TC)</span></td>
-                            <td class="mandatory">
-                                <span>Triết học Mác-Lênin</span
-                                    ><span>(3 TC)</span>
-                            </td>
-                            <td class="mandatory">
-                                <span>Tin học cơ sở 1</span><span>(2 TC)</span>
-                            </td>
-                            <td class="compulsory">
-                                <span>Giải tích 1</span><span>(3 TC)</span>
-                            </td>
-                            <td class="compulsory">
-                                <span>Đại số</span><span>(3 TC)</span>
-                            </td>
+                            <th>Học kỳ</th>
+                            <th>Môn học</th>
+                            <th>Số tín chỉ</th>
+                            <th>Loại môn</th>
+                            <th>Tài liệu</th>
                         </tr>
-                        <tr>
-                            <td><span>Học kỳ 2</span><span>(19 TC)</span></td>
-                            <td class="mandatory">
-                                <span>Kinh tế chính trị Mác-Lênin</span
-                                ><span>(2 TC) </span>
-                            </td>
-                            <td class="mandatory">
-                                <span>Tiếng Anh (Course&nbsp;1)</span
-                                ><span>(4 TC)</span>
-                            </td>
-                            <td class="mandatory">
-                                <span>Tin học cơ sở 2</span><span>(2 TC)</span>
-                            </td>
-                            <td class="compulsory">
-                                <span>Giải tích 2</span><span>(3 TC)</span>
-                            </td>
-                            <td class="compulsory">
-                                <span>Pháp luật đại cương</span
-                                ><span>(2 TC)</span>
-                            </td>
-                            <td class="compulsory">
-                                <span>Vật lý 1</span><span>(4 TC)</span>
-                            </td>
-                            <td class="base">
-                                <span>Xác suất thống kê</span><span>(2 TC)</span>
-                            </td>
+                    </thead>
+                    <tbody>
+                        <!-- Học kỳ 1 -->
+                        <tr data-semester="1">
+                            <td rowspan="4">Học kỳ 1 (11 TC)</td>
+                            <td>Triết học Mác-Lênin</td>
+                            <td>3</td>
+                            <td><span class="badge mandatory">Bắt buộc</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
                         </tr>
-                        <tr>
-                            <td><span>Học kỳ 3</span><span>(17 TC)</span></td>
-                            <td class="mandatory">
-                                <span>Chủ nghĩa xã hội khoa học</span
-                                ><span>(2 TC) </span>
-                            </td>
-                            <td class="mandatory">
-                                <span>Tiếng Anh (Course&nbsp;2)</span
-                                ><span>(4 TC)</span>
-                            </td>
-                            <td class="base">
-                                <span>Tín hiệu và hệ thống</span
-                                ><span>(3 TC)</span>
-                            </td>
-                            <td class="base">
-                                <span>Vật lí 2</span><span>(4 TC)</span>
-                            </td>
-                            <td class="base">
-                                <span>Lý thuyết mạch</span
-                                ><span>(2 TC)</span>
-                            </td>
-                            <td class="compulsory">
-                                <span>Linh kiện và mạch điện tử</span
-                                ><span>(3 TC)</span>
-                            </td>
+                        <tr data-semester="1">
+                            <td>Tin học cơ sở 1</td>
+                            <td>2</td>
+                            <td><span class="badge mandatory">Bắt buộc</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
                         </tr>
-                        <tr>
-                            <td><span>Học kỳ 4</span><span>(18 TC)</span></td>
-                            <td class="mandatory">
-                                <span>Tư tưởng Hồ Chí Minh</span
-                                ><span>(2 TC) </span>
-                            </td>
-                            <td class="mandatory">
-                                <span>Tiếng Anh (Course&nbsp;3)</span
-                                ><span>(4 TC)</span>
-                            </td>
-                            <td class="base">
-                                <span>Xử lí tín hiệu số</span
-                                ><span>(3 TC)</span>
-                            </td>
-                            <td class="base">
-                                <span>Kỹ thuật siêu cao tần</span><span>(3 TC)</span>
-                            </td>
-                            <td class="base">
-                                <span>Điện tử số</span
-                                ><span>(3 TC)</span>
-                            </td>
-                            <td class="compulsory">
-                                <span>Lý thuyết truyền tin</span
-                                ><span>(3 TC)</span>
-                            </td>
+                        <tr data-semester="1">
+                            <td>Giải tích 1</td>
+                            <td>3</td>
+                            <td><span class="badge compulsory">Cơ sở</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
                         </tr>
-                        <tr>
-                            <td><span>Học kỳ 5</span><span>(19 TC)</span></td>
-                            <td class="mandatory">
-                                <span>Lịch sử Đảng cộng sản VN </span
-                                ><span>(2 TC) </span>
-                            </td>
-                            <td class="mandatory">
-                                <span>Tiếng Anh (Course&nbsp;3 Plus) </span
-                                ><span>(4 TC)</span>
-                            </td>
-                            <td class="base">
-                                <span>Truyền sóng và anten</span><span>(3 TC)</span>
-                            </td>
-                            <td class="base">
-                                <span>Toán rời rạc </span
-                                ><span>(3 TC)</span>
-                            </td>
-                            <td class="base">
-                                <span>Kĩ thuật lập trình </span><span>(3 TC)</span>
-                            </td>
-                            <td class="compulsory">
-                                <span>Kiến trúc máy tính </span><span>(3 TC)</span>
-                            </td>
-                            <td class="compulsory">
-                                <span>Kỹ thuật vi xử lý </span
-                                ><span>(3 TC)</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><span>Học kỳ 6</span><span>(20 TC)</span></td>
-                            <td class="mandatory">
-                                <span>Hệ điều hành </span
-                                ><span>(2 TC) </span>
-                            </td>
-                            <td class="mandatory">
-                                <span>Cấu trúc dữ liệu và giải thuật </span
-                                ><span>(3 TC)</span>
-                            </td>
-                            <td class="base">
-                                <span>Kỹ thuật thông tin quang </span
-                                ><span>(3 TC)</span>
-                            </td>
-                            <td class="base">
-                                <span>Kỹ thuật mạng truyền thông </span><span>(2 TC)</span>
-                            </td>
-                            <td class="base">
-                                <span>Kỹ thuật thông tin vô tuyến </span
-                                ><span>(3 TC)</span>
-                            </td>
-                            <td class="base">
-                                <span>Công nghệ phần mềm </span
-                                ><span>(2 TC)</span>
-                            </td>
-                            <td class="base">
-                                <span>Mô phỏng hệ thống truyền thông </span
-                                ><span>(2 TC)</span>
-                            </td>
-                            <td class="compulsory">
-                                <span>Thực tập cơ sở </span><span>(2 TC)</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><span>Học kỳ 7</span><span>(18 TC)</span></td>
-                            <td class="Specialized">
-                                <span>QLDA phần mềm </span><span>(3 TC) </span>
-                            </td>
-                            <td class="Specialized">
-                                <span>IoT và ứng dụng </span><span>(3 TC)</span>
-                            </td>
-                            <td class="base">
-                                <span>Phân tích và thiết kế HTTT </span
-                                ><span>(3 TC)</span>
-                            </td>
-                            <td class="base">
-                                <span>Xử lý ảnh </span><span>(3 TC)</span>
-                            </td>
-                            <td class="base">
-                                <span>Học phần tự chọn </span
-                                ><span>(6 TC)</span>
-                            </td>
+                        <tr data-semester="1">
+                            <td>Đại số</td>
+                            <td>3</td>
+                            <td><span class="badge compulsory">Cơ sở</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
                         </tr>
 
-                        <tr>
-                            <td><span>Học kỳ 8</span><span>(17 TC)</span></td>
-                            <td class="specialized">
-                                <span>Thiết kế mạng máy tính </span
-                                ><span>(3 TC) </span>
-                            </td>
-                            <td class="Specialized">
-                                <span>Đánh giá hiệu năng mạng </span
-                                ><span>(3 TC)</span>
-                            </td>
-                            <td class="Specialized">
-                                <span>An ninh mạng</span><span>(3 TC)</span>
-                            </td>
-                            <td class="Specialized">
-                                <span>Học phần tự chọn </span
-                                ><span>(3 TC)</span>
-                            </td>
-                            <td class="base">
-                                <span
-                                    >Phương pháp luận nghiên cứu khoa học </span
-                                ><span>(2 TC)</span>
-                            </td>
+                        <!-- Học kỳ 2 -->
+                        <tr data-semester="2">
+                            <td rowspan="7">Học kỳ 2 (19 TC)</td>
+                            <td>Kinh tế chính trị Mác-Lênin</td>
+                            <td>2</td>
+                            <td><span class="badge mandatory">Bắt buộc</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="2">
+                            <td>Tiếng Anh (Course 1)</td>
+                            <td>4</td>
+                            <td><span class="badge mandatory">Bắt buộc</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="2">
+                            <td>Tin học cơ sở 2</td>
+                            <td>2</td>
+                            <td><span class="badge mandatory">Bắt buộc</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="2">
+                            <td>Giải tích 2</td>
+                            <td>3</td>
+                            <td><span class="badge compulsory">Cơ sở</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="2">
+                            <td>Pháp luật đại cương</td>
+                            <td>2</td>
+                            <td><span class="badge compulsory">Cơ sở</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="2">
+                            <td>Vật lý 1</td>
+                            <td>4</td>
+                            <td><span class="badge compulsory">Cơ sở</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="2">
+                            <td>Xác suất thống kê</td>
+                            <td>2</td>
+                            <td><span class="badge base">Cơ sở ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
                         </tr>
 
-                        <tr>
-                            <td><span>Học kỳ 9</span><span>(12 TC)</span></td>
-                            <td class="base">
-                                <span>Thực tập và tốt nghiệp </span
-                                ><span>(12 TC)</span>
-                            </td>
+                        <!-- Học kỳ 3 -->
+                        <tr data-semester="3">
+                            <td rowspan="6">Học kỳ 3 (17 TC)</td>
+                            <td>Chủ nghĩa xã hội khoa học</td>
+                            <td>2</td>
+                            <td><span class="badge mandatory">Bắt buộc</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
                         </tr>
-                    </table>
-                </div>
+                        <tr data-semester="3">
+                            <td>Tiếng Anh (Course 2)</td>
+                            <td>4</td>
+                            <td><span class="badge mandatory">Bắt buộc</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="3">
+                            <td>Tín hiệu và hệ thống</td>
+                            <td>3</td>
+                            <td><span class="badge base">Cơ sở ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="3">
+                            <td>Vật lí 2</td>
+                            <td>4</td>
+                            <td><span class="badge base">Cơ sở ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="3">
+                            <td>Lý thuyết mạch</td>
+                            <td>2</td>
+                            <td><span class="badge base">Cơ sở ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="3">
+                            <td>Linh kiện và mạch điện tử</td>
+                            <td>3</td>
+                            <td><span class="badge compulsory">Cơ sở</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+
+                        <!-- Học kỳ 4 -->
+                        <tr data-semester="4">
+                            <td rowspan="6">Học kỳ 4 (18 TC)</td>
+                            <td>Tư tưởng Hồ Chí Minh</td>
+                            <td>2</td>
+                            <td><span class="badge mandatory">Bắt buộc</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="4">
+                            <td>Tiếng Anh (Course 3)</td>
+                            <td>4</td>
+                            <td><span class="badge mandatory">Bắt buộc</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="4">
+                            <td>Xử lí tín hiệu số</td>
+                            <td>3</td>
+                            <td><span class="badge base">Cơ sở ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="4">
+                            <td>Kỹ thuật siêu cao tần</td>
+                            <td>3</td>
+                            <td><span class="badge base">Cơ sở ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="4">
+                            <td>Điện tử số</td>
+                            <td>3</td>
+                            <td><span class="badge base">Cơ sở ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="4">
+                            <td>Lý thuyết truyền tin</td>
+                            <td>3</td>
+                            <td><span class="badge compulsory">Cơ sở</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+
+                        <!-- Học kỳ 5 -->
+                        <tr data-semester="5">
+                            <td rowspan="7">Học kỳ 5 (19 TC)</td>
+                            <td>Lịch sử Đảng cộng sản VN</td>
+                            <td>2</td>
+                            <td><span class="badge mandatory">Bắt buộc</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="5">
+                            <td>Tiếng Anh (Course 3 Plus)</td>
+                            <td>4</td>
+                            <td><span class="badge mandatory">Bắt buộc</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="5">
+                            <td>Truyền sóng và anten</td>
+                            <td>3</td>
+                            <td><span class="badge base">Cơ sở ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="5">
+                            <td>Toán rời rạc</td>
+                            <td>3</td>
+                            <td><span class="badge base">Cơ sở ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="5">
+                            <td>Kĩ thuật lập trình</td>
+                            <td>3</td>
+                            <td><span class="badge base">Cơ sở ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="5">
+                            <td>Kiến trúc máy tính</td>
+                            <td>3</td>
+                            <td><span class="badge compulsory">Cơ sở</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="5">
+                            <td>Kỹ thuật vi xử lý</td>
+                            <td>3</td>
+                            <td><span class="badge compulsory">Cơ sở</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+
+                        <!-- Học kỳ 6 -->
+                        <tr data-semester="6">
+                            <td rowspan="8">Học kỳ 6 (20 TC)</td>
+                            <td>Hệ điều hành</td>
+                            <td>2</td>
+                            <td><span class="badge mandatory">Bắt buộc</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="6">
+                            <td>Cấu trúc dữ liệu và giải thuật</td>
+                            <td>3</td>
+                            <td><span class="badge mandatory">Bắt buộc</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="6">
+                            <td>Kỹ thuật thông tin quang</td>
+                            <td>3</td>
+                            <td><span class="badge base">Cơ sở ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="6">
+                            <td>Kỹ thuật mạng truyền thông</td>
+                            <td>2</td>
+                            <td><span class="badge base">Cơ sở ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="6">
+                            <td>Kỹ thuật thông tin vô tuyến</td>
+                            <td>3</td>
+                            <td><span class="badge base">Cơ sở ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="6">
+                            <td>Công nghệ phần mềm</td>
+                            <td>2</td>
+                            <td><span class="badge base">Cơ sở ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="6">
+                            <td>Mô phỏng hệ thống truyền thông</td>
+                            <td>2</td>
+                            <td><span class="badge base">Cơ sở ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="6">
+                            <td>Thực tập cơ sở</td>
+                            <td>2</td>
+                            <td><span class="badge compulsory">Cơ sở</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+
+                        <!-- Học kỳ 7 -->
+                        <tr data-semester="7">
+                            <td rowspan="5">Học kỳ 7 (18 TC)</td>
+                            <td>QLDA phần mềm</td>
+                            <td>3</td>
+                            <td><span class="badge specialized">Chuyên ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="7">
+                            <td>IoT và ứng dụng</td>
+                            <td>3</td>
+                            <td><span class="badge specialized">Chuyên ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="7">
+                            <td>Phân tích và thiết kế HTTT</td>
+                            <td>3</td>
+                            <td><span class="badge base">Cơ sở ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="7">
+                            <td>Xử lý ảnh</td>
+                            <td>3</td>
+                            <td><span class="badge base">Cơ sở ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="7">
+                            <td>Học phần tự chọn</td>
+                            <td>6</td>
+                            <td><span class="badge base">Cơ sở ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+
+                        <!-- Học kỳ 8 -->
+                        <tr data-semester="8">
+                            <td rowspan="5">Học kỳ 8 (17 TC)</td>
+                            <td>Thiết kế mạng máy tính</td>
+                            <td>3</td>
+                            <td><span class="badge specialized">Chuyên ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="8">
+                            <td>Đánh giá hiệu năng mạng</td>
+                            <td>3</td>
+                            <td><span class="badge specialized">Chuyên ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="8">
+                            <td>An ninh mạng</td>
+                            <td>3</td>
+                            <td><span class="badge specialized">Chuyên ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="8">
+                            <td>Học phần tự chọn</td>
+                            <td>3</td>
+                            <td><span class="badge specialized">Chuyên ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                        <tr data-semester="8">
+                            <td>Phương pháp luận nghiên cứu khoa học</td>
+                            <td>2</td>
+                            <td><span class="badge base">Cơ sở ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+
+                        <!-- Học kỳ 9 -->
+                        <tr data-semester="9">
+                            <td>Học kỳ 9 (12 TC)</td>
+                            <td>Thực tập và tốt nghiệp</td>
+                            <td>12</td>
+                            <td><span class="badge base">Cơ sở ngành</span></td>
+                            <td><button class="view-doc-btn">Xem tài liệu</button></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        
-
-        <div class="view-doc">
-            <div class="content">
-                <button class="view-close-btn"><span class="material-symbols-outlined">
-                    close </span
-                ></button>
-                <div class="view-document">
-                    <div class="view-imgbook">
-                        <img src="./assets/img/book.svg" alt="" />
+        <div class="document-statistics">
+            <h2>Thống kê tài liệu</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <span class="material-symbols-outlined">menu_book</span>
                     </div>
-                    <div class="view-info">
-                        <span class="view-title">Tư tưởng Hồ Chí Minh</span>
-                        <div style="display: flex; align-items: center; margin-bottom: 32px; gap: 8px;"><img src="./assets/img/icon-tc.svg" alt=""><span class="view-number">3 TC</span></div>
-                        <a href="#!"><span class="view-btn"
-                            ><span class="material-symbols-outlined">
-                                plagiarism </span
-                            ><span>View Document</span></span
-                        ></a>
+                    <div class="stat-info">
+                        <h3>Giáo trình</h3>
+                        <p>45 tài liệu</p>
                     </div>
                 </div>
-                <div class="view-available-document">
-                    <span>Tài Liệu Tổng Hợp Được</span>
-                    <ul class="list">
-                        <li>
-                            <div class="giao-trinh">
-                                <img
-                                    src="./assets/img/available-icon1.svg"
-                                    alt=""
-                                />
-                                <span>Giáo Trình</span>
-                            </div>
-                        </li>
-                        <li><div class="bai-giang">
-                            <img
-                                src="./assets/img/available-icon2.svg"
-                                alt=""
-                            />
-                            <span>Bài Giảng</span>
-                        <div></li>
-                        <li><div class="ngan-hang">
-                            <img
-                                src="./assets/img/available-icon3.svg"
-                                alt=""
-                            />
-                            <span>Ngân Hàng</span>
-                        </div></li>
-                        <li><div class="de-thi">
-                            <img
-                                src="./assets/img/available-icon4.svg"
-                                alt=""
-                            />
-                            <span>Đề Thi</span>
-                        </div></li>
-                    </ul>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <span class="material-symbols-outlined">description</span>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Bài giảng</h3>
+                        <p>28 tài liệu</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <span class="material-symbols-outlined">quiz</span>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Đề thi</h3>
+                        <p>63 tài liệu</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <span class="material-symbols-outlined">collections_bookmark</span>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Tổng hợp</h3>
+                        <p>136 tài liệu</p>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <script src="./assets/js/script.js"></script>
-    </body>
+    <!-- Modal xem tài liệu -->
+    <div class="document-modal" id="documentModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="document-preview">
+                <div class="document-cover">
+                    <img src="./assets/img/book.svg" alt="Bìa tài liệu">
+                </div>
+                <div class="document-details">
+                    <h3 class="document-title">Tên tài liệu</h3>
+                    <div class="document-meta">
+                        <span class="credit"><img src="./assets/img/icon-tc.svg" alt=""> 3 TC</span>
+                        <span class="subject">Môn: Triết học Mác-Lênin</span>
+                        <span class="type">Loại: Giáo trình</span>
+                    </div>
+                    <div class="document-actions">
+                        <a href="#" class="download-btn">
+                            <span class="material-symbols-outlined">download</span>
+                            Tải xuống
+                        </a>
+                        <a href="#" class="view-online-btn">
+                            <span class="material-symbols-outlined">visibility</span>
+                            Xem trực tuyến
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="related-documents">
+                <h4>Tài liệu liên quan</h4>
+                <div class="related-list">
+                    <div class="related-item">
+                        <span class="material-symbols-outlined">picture_as_pdf</span>
+                        <span>Slide bài giảng Triết học</span>
+                    </div>
+                    <div class="related-item">
+                        <span class="material-symbols-outlined">quiz</span>
+                        <span>Đề thi Triết học 2023</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer sẽ được include từ file riêng -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        $(document).ready(function() {
+            // Load header và footer
+            $("#header-placeholder").load("header.html");
+            $("#footer-placeholder").load("footer.html");
+            
+            // Lọc môn học theo học kỳ
+            $(".filter-btn").click(function() {
+                const semester = $(this).data("semester");
+                $(".filter-btn").removeClass("active");
+                $(this).addClass("active");
+                
+                if (semester === "all") {
+                    $("tbody tr").show();
+                } else {
+                    $("tbody tr").hide();
+                    $(`tbody tr[data-semester="${semester}"]`).show();
+                }
+            });
+            
+            // Xử lý mở modal xem tài liệu
+            $(".view-doc-btn").click(function() {
+                // Lấy thông tin môn học từ hàng được click
+                const subject = $(this).closest("tr").find("td:eq(1)").text();
+                const credits = $(this).closest("tr").find("td:eq(2)").text();
+                const type = $(this).closest("tr").find(".badge").text();
+                
+                // Đặt thông tin vào modal
+                $("#documentModal .document-title").text(subject);
+                $("#documentModal .credit").html(`<img src="./assets/img/icon-tc.svg" alt=""> ${credits} TC`);
+                $("#documentModal .type").text(`Loại: ${type}`);
+                
+                // Hiển thị modal
+                $("#documentModal").fadeIn();
+            });
+            
+            // Đóng modal
+            $(".close-modal").click(function() {
+                $("#documentModal").fadeOut();
+            });
+            
+            // Đóng modal khi click bên ngoài
+            $(window).click(function(e) {
+                if (e.target === document.getElementById("documentModal")) {
+                    $("#documentModal").fadeOut();
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Load header và footer
+            $("#header-placeholder").load("header.html");
+            $("#footer-placeholder").load("footer.html");
+            
+            // Lọc môn học theo học kỳ
+            $(".filter-btn").click(function() {
+                const semester = $(this).data("semester");
+                $(".filter-btn").removeClass("active");
+                $(this).addClass("active");
+                
+                if (semester === "all") {
+                    $("tbody tr").show();
+                } else {
+                    $("tbody tr").hide();
+                    $(`tbody tr[data-semester="${semester}"]`).show();
+                }
+            });
+            
+            // Định nghĩa dữ liệu tài liệu liên quan
+            const relatedMaterials = {
+                "Triết học Mác-Lênin": [
+                    { type: "slide", name: "Slide bài giảng Triết học" },
+                    { type: "exam", name: "Đề thi Triết học 2023" },
+                    { type: "summary", name: "Tóm tắt lý thuyết Triết học" }
+                ],
+                "Giải tích 1": [
+                    { type: "slide", name: "Slide bài giảng Giải tích 1" },
+                    { type: "exam", name: "Đề thi Giải tích 1 - 2023" },
+                    { type: "exercise", name: "Bài tập Giải tích 1 có lời giải" }
+                ],
+                "Đại số": [
+                    { type: "slide", name: "Slide bài giảng Đại số" },
+                    { type: "exam", name: "Đề thi Đại số - 2023" }
+                ],
+                // Thêm các môn khác tương tự
+                "default": [
+                    { type: "slide", name: "Slide bài giảng" },
+                    { type: "exam", name: "Đề thi mẫu" },
+                    { type: "summary", name: "Tóm tắt kiến thức" }
+                ]
+            };
+    
+            // Xử lý mở modal xem tài liệu
+            $(document).on('click', '.view-doc-btn', function() {
+                // Lấy thông tin môn học từ hàng được click
+                const row = $(this).closest("tr");
+                const subject = row.find("td:nth-child(2)").text().trim();
+                const credits = row.find("td:nth-child(3)").text().trim();
+                const type = row.find(".badge").text().trim();
+                const semester = row.data("semester");
+                
+                // Đặt thông tin vào modal
+                const modal = $("#documentModal");
+                modal.find(".document-title").text(subject);
+                modal.find(".subject").text(`Môn: ${subject}`);
+                modal.find(".credit").html(`<img src="./assets/img/icon-tc.svg" alt=""> ${credits} TC`);
+                modal.find(".type").text(`Loại: ${type}`);
+                
+                // Tùy chỉnh nội dung liên quan
+                const relatedItems = modal.find(".related-list");
+                relatedItems.empty();
+                
+                // Lấy tài liệu liên quan hoặc dùng mẫu mặc định
+                const materials = relatedMaterials[subject] || relatedMaterials["default"];
+                
+                materials.forEach(item => {
+                    let icon = "";
+                    switch(item.type) {
+                        case "slide": icon = "picture_as_pdf"; break;
+                        case "exam": icon = "quiz"; break;
+                        case "exercise": icon = "assignment"; break;
+                        default: icon = "description";
+                    }
+                    
+                    relatedItems.append(`
+                        <div class="related-item">
+                            <span class="material-symbols-outlined">${icon}</span>
+                            <span>${item.name}</span>
+                        </div>
+                    `);
+                });
+                
+                // Cập nhật link tải về và xem online (có thể thêm logic riêng cho từng môn)
+                modal.find(".download-btn").attr("href", `./downloads/${subject.replace(/\s+/g, '-')}.pdf`);
+                modal.find(".view-online-btn").attr("href", `./viewer.html?doc=${encodeURIComponent(subject)}`);
+                
+                // Hiển thị modal
+                modal.fadeIn();
+            });
+            
+            // Đóng modal
+            $(".close-modal").click(function() {
+                $("#documentModal").fadeOut();
+            });
+            
+            // Đóng modal khi click bên ngoài
+            $(window).click(function(e) {
+                if (e.target === document.getElementById("documentModal")) {
+                    $("#documentModal").fadeOut();
+                }
+            });
+        });
+    </script>
+</body>
 </html>
